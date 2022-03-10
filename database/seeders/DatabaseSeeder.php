@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Chain;
+use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +17,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        /** @var Chain $chain */
+        $chain = Chain::query()->create([
+            'name' => 'Ethereum Mainnet',
+        ]);
+
+        /** @var User $user */
+        $user = User::query()->create([
+            'name' => 'user',
+            'email' => 'user@email.com',
+            'password' => 'password',
+        ]);
+
+        Wallet::factory()->count(1)->create([
+            'name' => 'my ETH wallet',
+            'chain_id' => $chain->id,
+            'user_id' => $user->id,
+        ]);
     }
 }
