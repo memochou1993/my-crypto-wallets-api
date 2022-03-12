@@ -19,7 +19,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('address');
-            $table->boolean('enabled')->default(false);
+            $table->boolean('is_enabled')->default(false);
             $table->foreignIdFor(Chain::class);
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->timestamps();

@@ -31,6 +31,9 @@ class WalletUpdateRequest extends FormRequest
             'address' => [
                 'min:1',
             ],
+            'is_enabled' => [
+                'boolean',
+            ],
             'chain_id' => [
                 Rule::exists('chains', 'id'),
             ],

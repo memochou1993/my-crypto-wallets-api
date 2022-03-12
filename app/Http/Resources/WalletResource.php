@@ -22,6 +22,7 @@ class WalletResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'address' => $this->address,
+            'is_enabled' => $this->is_enabled,
             'chain' => new ChainResource($this->whenLoaded('chain')),
             'user' => new UserResource($this->whenLoaded('user')),
             'created_at' => $this->created_at,

@@ -47,26 +47,16 @@ class WalletController extends Controller
      *     tags={"Wallet"},
      *     path="/api/wallets",
      *     security={{"sanctum":{}}},
-     *     @OA\Parameter(
-     *         name="name",
-     *         description="Wallet Name",
-     *         required=true,
-     *         in="query",
-     *         @OA\Schema(type="string")
-     *     ),
-     *     @OA\Parameter(
-     *         name="address",
-     *         description="Wallet Address",
-     *         required=true,
-     *         in="query",
-     *         @OA\Schema(type="string")
-     *     ),
-     *     @OA\Parameter(
-     *         name="chain_id",
-     *         description="Chain ID",
-     *         required=true,
-     *         in="query",
-     *         @OA\Schema(type="number")
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(property="name", type="string", default=""),
+     *                 @OA\Property(property="address", type="string", default=""),
+     *                 @OA\Property(property="is_enabled", type="boolean", default=false),
+     *                 @OA\Property(property="chain_id", type="integer", default=0),
+     *             ),
+     *         ),
      *     ),
      *     @OA\Response(response=200, description="OK", @OA\JsonContent()),
      *     @OA\Response(response=201, description="Created", @OA\JsonContent()),
@@ -98,7 +88,7 @@ class WalletController extends Controller
      *         description="Wallet ID",
      *         required=true,
      *         in="path",
-     *         @OA\Schema(type="integer")
+     *         @OA\Schema(type="integer"),
      *     ),
      *     @OA\Response(response=200, description="OK", @OA\JsonContent()),
      *     @OA\Response(response=401, description="Unauthorized", @OA\JsonContent()),
@@ -126,21 +116,18 @@ class WalletController extends Controller
      *         description="Wallet ID",
      *         required=true,
      *         in="path",
-     *         @OA\Schema(type="integer")
+     *         @OA\Schema(type="integer"),
      *     ),
-     *     @OA\Parameter(
-     *         name="name",
-     *         description="Wallet Name",
-     *         required=false,
-     *         in="query",
-     *         @OA\Schema(type="string")
-     *     ),
-     *     @OA\Parameter(
-     *         name="address",
-     *         description="Wallet Address",
-     *         required=false,
-     *         in="query",
-     *         @OA\Schema(type="string")
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(property="name", type="string", default=""),
+     *                 @OA\Property(property="address", type="string", default=""),
+     *                 @OA\Property(property="is_enabled", type="boolean", default=false),
+     *                 @OA\Property(property="chain_id", type="integer", default=0),
+     *             ),
+     *         ),
      *     ),
      *     @OA\Response(response=200, description="OK", @OA\JsonContent()),
      *     @OA\Response(response=401, description="Unauthorized", @OA\JsonContent()),
@@ -172,7 +159,7 @@ class WalletController extends Controller
      *         description="Wallet ID",
      *         required=true,
      *         in="path",
-     *         @OA\Schema(type="integer")
+     *         @OA\Schema(type="integer"),
      *     ),
      *     @OA\Response(response=204, description="No Content", @OA\JsonContent()),
      *     @OA\Response(response=401, description="Unauthorized", @OA\JsonContent()),

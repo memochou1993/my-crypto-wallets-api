@@ -42,35 +42,33 @@
                 ],
                 "summary": "Store a newly created resource in storage.",
                 "operationId": "b1ddb2621328224115fe3ba6f1fd6b0b",
-                "parameters": [
-                    {
-                        "name": "name",
-                        "in": "query",
-                        "description": "Wallet Name",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "address",
-                        "in": "query",
-                        "description": "Wallet Address",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "chain_id",
-                        "in": "query",
-                        "description": "Chain ID",
-                        "required": true,
-                        "schema": {
-                            "type": "number"
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "default": ""
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "default": ""
+                                    },
+                                    "is_enabled": {
+                                        "type": "boolean",
+                                        "default": false
+                                    },
+                                    "chain_id": {
+                                        "type": "integer",
+                                        "default": 0
+                                    }
+                                },
+                                "type": "object"
+                            }
                         }
                     }
-                ],
+                },
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -201,26 +199,35 @@
                         "schema": {
                             "type": "integer"
                         }
-                    },
-                    {
-                        "name": "name",
-                        "in": "query",
-                        "description": "Wallet Name",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "address",
-                        "in": "query",
-                        "description": "Wallet Address",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
                     }
                 ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "default": ""
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "default": ""
+                                    },
+                                    "is_enabled": {
+                                        "type": "boolean",
+                                        "default": false
+                                    },
+                                    "chain_id": {
+                                        "type": "integer",
+                                        "default": 0
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "OK",

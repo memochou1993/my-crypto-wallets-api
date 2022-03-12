@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Wallet::factory()->count(1)->create([
-            'name' => 'my ETH wallet',
+            'name' => 'My ETH Wallet',
             'chain_id' => $chain->id,
             'user_id' => $user->id,
         ]);
@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Wallet::factory()->count(1)->create([
-            'name' => 'my ETH wallet',
+            'name' => 'My ETH Wallet',
             'chain_id' => $chain->id,
             'user_id' => $guest->id,
         ]);

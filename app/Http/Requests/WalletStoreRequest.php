@@ -31,6 +31,10 @@ class WalletStoreRequest extends FormRequest
             'address' => [
                 'required',
             ],
+            'is_enabled' => [
+                'required',
+                'boolean',
+            ],
             'chain_id' => [
                 'required',
                 Rule::exists('chains', 'id'),
