@@ -23,6 +23,14 @@ class WalletController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @OA\Get(
+     *     tags={"Wallet"},
+     *     path="/api/wallets",
+     *     security={{"sanctum":{}}},
+     *     @OA\Response(response=200, description="OK", @OA\JsonContent()),
+     *     @OA\Response(response=401, description="Unauthorized", @OA\JsonContent()),
+     * )
+     *
      * @return AnonymousResourceCollection
      */
     public function index(Request $request)
@@ -34,6 +42,39 @@ class WalletController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @OA\Post(
+     *     tags={"Wallet"},
+     *     path="/api/wallets",
+     *     security={{"sanctum":{}}},
+     *     @OA\Parameter(
+     *         name="name",
+     *         description="Wallet Name",
+     *         required=true,
+     *         in="query",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="address",
+     *         description="Wallet Address",
+     *         required=true,
+     *         in="query",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="chain_id",
+     *         description="Chain ID",
+     *         required=true,
+     *         in="query",
+     *         @OA\Schema(type="number")
+     *     ),
+     *     @OA\Response(response=200, description="OK", @OA\JsonContent()),
+     *     @OA\Response(response=201, description="Created", @OA\JsonContent()),
+     *     @OA\Response(response=401, description="Unauthorized", @OA\JsonContent()),
+     *     @OA\Response(response=403, description="Forbidden", @OA\JsonContent()),
+     *     @OA\Response(response=404, description="Not Found", @OA\JsonContent()),
+     *     @OA\Response(response=422, description="Unprocessable Content", @OA\JsonContent()),
+     * )
      *
      * @param WalletStoreRequest $request
      * @return WalletResource
@@ -48,6 +89,23 @@ class WalletController extends Controller
     /**
      * Display the specified resource.
      *
+     * @OA\Get(
+     *     tags={"Wallet"},
+     *     path="/api/wallets/{id}",
+     *     security={{"sanctum":{}}},
+     *     @OA\Parameter(
+     *         name="id",
+     *         description="Wallet ID",
+     *         required=true,
+     *         in="path",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response=200, description="OK", @OA\JsonContent()),
+     *     @OA\Response(response=401, description="Unauthorized", @OA\JsonContent()),
+     *     @OA\Response(response=403, description="Forbidden", @OA\JsonContent()),
+     *     @OA\Response(response=404, description="Not Found", @OA\JsonContent()),
+     * )
+     *
      * @param Wallet $wallet
      * @return WalletResource
      */
@@ -58,6 +116,38 @@ class WalletController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
+     * @OA\Put(
+     *     tags={"Wallet"},
+     *     path="/api/wallets/{id}",
+     *     security={{"sanctum":{}}},
+     *     @OA\Parameter(
+     *         name="id",
+     *         description="Wallet ID",
+     *         required=true,
+     *         in="path",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Parameter(
+     *         name="name",
+     *         description="Wallet Name",
+     *         required=false,
+     *         in="query",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="address",
+     *         description="Wallet Address",
+     *         required=false,
+     *         in="query",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(response=200, description="OK", @OA\JsonContent()),
+     *     @OA\Response(response=401, description="Unauthorized", @OA\JsonContent()),
+     *     @OA\Response(response=403, description="Forbidden", @OA\JsonContent()),
+     *     @OA\Response(response=404, description="Not Found", @OA\JsonContent()),
+     *     @OA\Response(response=422, description="Unprocessable Content", @OA\JsonContent()),
+     * )
      *
      * @param WalletUpdateRequest $request
      * @param Wallet $wallet
@@ -72,6 +162,23 @@ class WalletController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @OA\Delete(
+     *     tags={"Wallet"},
+     *     path="/api/wallets/{id}",
+     *     security={{"sanctum":{}}},
+     *     @OA\Parameter(
+     *         name="id",
+     *         description="Wallet ID",
+     *         required=true,
+     *         in="path",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response=204, description="No Content", @OA\JsonContent()),
+     *     @OA\Response(response=401, description="Unauthorized", @OA\JsonContent()),
+     *     @OA\Response(response=403, description="Forbidden", @OA\JsonContent()),
+     *     @OA\Response(response=404, description="Not Found", @OA\JsonContent()),
+     * )
      *
      * @param Wallet $wallet
      * @return JsonResponse
