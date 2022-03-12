@@ -18,7 +18,7 @@ class WalletPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class WalletPolicy
      */
     public function view(User $user, Wallet $wallet)
     {
-        //
+        return $wallet->user_id === $user->id;
     }
 
     /**
@@ -41,7 +41,7 @@ class WalletPolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class WalletPolicy
      */
     public function update(User $user, Wallet $wallet)
     {
-        //
+        return $wallet->user_id === $user->id;
     }
 
     /**
@@ -65,7 +65,7 @@ class WalletPolicy
      */
     public function delete(User $user, Wallet $wallet)
     {
-        //
+        return $wallet->user_id === $user->id;
     }
 
     /**

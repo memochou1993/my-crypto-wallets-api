@@ -34,5 +34,18 @@ class DatabaseSeeder extends Seeder
             'chain_id' => $chain->id,
             'user_id' => $user->id,
         ]);
+
+        /** @var User $guest */
+        $guest = User::query()->create([
+            'name' => 'guest',
+            'email' => 'guest@email.com',
+            'password' => 'password',
+        ]);
+
+        Wallet::factory()->count(1)->create([
+            'name' => 'my ETH wallet',
+            'chain_id' => $chain->id,
+            'user_id' => $guest->id,
+        ]);
     }
 }

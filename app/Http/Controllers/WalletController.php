@@ -5,23 +5,29 @@ namespace App\Http\Controllers;
 use App\Http\Requests\WalletStoreRequest;
 use App\Http\Requests\WalletUpdateRequest;
 use App\Http\Resources\WalletResource;
-use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response;
 
 class WalletController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     */
+    public function __construct() {
+        $this->authorizeResource(Wallet::class);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return AnonymousResourceCollection
      */
-    public function index()
+    public function index(Request $request)
     {
-        // FIXME
-        $wallets = User::query()->first()->wallets()->with(['chain'])->get();
+        $wallets = $request->user()->wallets()->with(['chain'])->get();
 
         return WalletResource::collection($wallets);
     }
@@ -34,8 +40,7 @@ class WalletController extends Controller
      */
     public function store(WalletStoreRequest $request)
     {
-        // FIXME
-        $wallet = User::query()->first()->wallets()->create($request->all());
+        $wallet = $request->user()->wallets()->create($request->all());
 
         return new WalletResource($wallet);
     }
@@ -60,7 +65,6 @@ class WalletController extends Controller
      */
     public function update(WalletUpdateRequest $request, Wallet $wallet)
     {
-        // FIXME
         $wallet->update($request->all());
 
         return new WalletResource($wallet);
@@ -74,7 +78,6 @@ class WalletController extends Controller
      */
     public function destroy(Wallet $wallet)
     {
-        // FIXME
         $wallet->delete();
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
