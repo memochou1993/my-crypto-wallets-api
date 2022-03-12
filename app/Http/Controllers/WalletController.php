@@ -58,7 +58,6 @@ class WalletController extends Controller
      *             ),
      *         ),
      *     ),
-     *     @OA\Response(response=200, description="OK", @OA\JsonContent()),
      *     @OA\Response(response=201, description="Created", @OA\JsonContent()),
      *     @OA\Response(response=401, description="Unauthorized", @OA\JsonContent()),
      *     @OA\Response(response=403, description="Forbidden", @OA\JsonContent()),

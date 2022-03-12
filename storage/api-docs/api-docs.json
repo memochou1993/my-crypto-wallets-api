@@ -5,6 +5,90 @@
         "version": "1.0"
     },
     "paths": {
+        "/api/tokens": {
+            "post": {
+                "tags": [
+                    "Token"
+                ],
+                "summary": "Store a newly created resource in storage.",
+                "operationId": "13e74789c1453e13625ed5c1a0ec1bcc",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "default": ""
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "default": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Token"
+                ],
+                "summary": "Remove the specified resource from storage.",
+                "operationId": "5893672218de7ddd50a9353875d26e04",
+                "responses": {
+                    "204": {
+                        "description": "No Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/wallets": {
             "get": {
                 "tags": [
@@ -70,14 +154,6 @@
                     }
                 },
                 "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
                     "201": {
                         "description": "Created",
                         "content": {
